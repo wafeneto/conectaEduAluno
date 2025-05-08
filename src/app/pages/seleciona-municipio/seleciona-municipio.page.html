@@ -1,0 +1,33 @@
+<ion-content class="background">
+  <div class="container">
+    <ion-list>
+      <ion-item lines="none">
+        <ion-select
+          label="Estado"
+          (ionChange)="listarMunicipios()"
+          [(ngModel)]="estado"
+        >
+          <ion-select-option
+            *ngFor="let estadoObj of listaEstado"
+            [value]="estadoObj"
+            >{{estadoObj.descricao}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-select label="Município"[(ngModel)]="municipio">
+          <ion-select-option
+            *ngFor="let municipioObj of listaMunicipios"
+            [value]="municipioObj"
+            >{{municipioObj.nomeMunicipio}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" color="primary" (click)="navegaParaLogin()"
+      >Acessar</ion-button
+    >
+  </div>
+</ion-content>

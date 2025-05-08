@@ -24,6 +24,7 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+@import "./theme/custom_styles";
 
 /**
  * Ionic Dark Mode
@@ -34,4 +35,66 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+@import 'swiper/css';
+
+
+ion-content {
+  font-size: 17px;
+  font-family: "Open Sans", sans-serif;
+  --background: #f0f0f0;
+}
+.monthview-selected{
+  background-color: transparent !important;
+  .day-content{
+      font-weight: bold;
+      background-color: rgb(170, 170, 181) !important;
+      color: white !important;
+      border-radius: 5px !important;
+
+    }
+  .day-color{
+    background-color: #616161 !important;
+  }
+}
+
+.monthview-primary-with-event, .calendar-event-inner{
+  background-color: transparent !important;
+  color: black !important;
+  
+  .day-color{
+    color: white;
+    background-color: blue ;
+    font-weight: bolder !important;
+    border-radius: 5px !important;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2) !important;
+
+  }
+}
+
+.calendar tbody td { 
+  text-align: center;
+  vertical-align: middle!important;
+  font-weight: bolder;
+}
+
+.calendar td, th {
+    border: 0 !important;
+  }
+.monthview-datetable, .calendar-buttons {
+  background-color: white !important;
+}
+  
+  :root{
+    --dis-0: #616161;
+    --dis-1: #66c2a5;
+    --dis-2: #fdae61;
+    --dis-3: #3288bd;
+    --dis-4: #ffffbf;
+    --dis-5: #e6f598;
+    --dis-6: #abdda4;
+    --dis-7: #fee08b;
+    --dis-8: #d53e4f;
+    --dis-9: #f46d43;
+  }
+  

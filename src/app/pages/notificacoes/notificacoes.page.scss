@@ -1,0 +1,172 @@
+/* Estilo da lista */
+.notification-list {
+  padding: 0 2%;
+}
+
+/* Ícone principal da notificação */
+.notification-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+/* Texto da notificação */
+.notification-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #808181;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* ou para quebrar em 2 linhas no mobile:
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  */
+}
+
+/* Container de ícones à direita */
+.metadata-end-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Ícone de deletar */
+.delete-icon {
+  font-size: 20px;
+  margin-top: 8px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* Notificações não lidas com fundo diferente */
+.noread-color {
+  --ion-item-background: #d6eff4;
+}
+
+/* Bolinha vermelha de notificação */
+.badge-notification {
+  width: 10px;
+  height: 10px;
+  background: red;
+  position: absolute;
+  top: 1px;
+  right: 6px;
+  border-radius: 100%;
+}
+
+/* Estilo do ícone "done all" */
+.done-all {
+  ion-icon {
+    font-size: 32px;
+  }
+}
+
+/* Estilo do item deslizante */
+ion-item-sliding {
+  border-radius: 12px;
+  margin: 10px 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+}
+
+/* Estilo base de cada item */
+ion-item.notification-item {
+  --min-height: 70px !important;
+  --inner-padding-start: 10px;
+  --inner-padding-end: 10px;
+  border-radius: 12px;
+  background-color: #fff;
+  transition: transform 0.2s;
+  border-color: #f6f5f5;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  &.novas ion-icon {
+    color: #2dd36f;
+  }
+
+  &.nao-lidas ion-icon,
+  &.lidas ion-icon {
+    color: #169db2;
+  }
+
+  ion-icon {
+    height: 20px;
+    margin-right: 8px;
+    font-size: 24px;
+  }
+
+  ion-label {
+    margin: 0;
+
+    h3.notification-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    p.notification-text {
+      font-size: 10px;
+      font-weight: bold;
+      color: #808181;
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.4;
+    }
+  }
+}
+
+/* Estilo dos botões de swipe (excluir) */
+ion-item-option {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+/* Estilo do modal */
+.modal-toolbar {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-dark);
+  box-shadow: none;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.modal-content {
+  background-color: #f9f9f9;
+}
+
+.modal-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-text {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}

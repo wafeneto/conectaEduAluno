@@ -1,0 +1,50 @@
+ion-toolbar {
+  --background: var(--ion-text-primary);
+}
+
+ion-list {
+  background: transparent !important;
+}
+
+ion-item {
+  --background: #fff;
+  --color: #000;
+
+  --min-height: 55px;
+}
+
+//FOR THE TOAST SERVICE
+.toast-error {
+  --background: var(--ion-color-danger-shade);
+  --color: white !important;
+  --button-color: #ffff;
+  font-weight: bold;
+}
+
+.toast-error .button-inner {
+  color: white !important;
+}
+
+.toast-success {
+  --background: var(--ion-color-success);
+  --color: white !important;
+  --button-color: #ffff;
+  font-weight: bold;
+}
+
+//FOR THE FORM INPUT AND MESSAGE VALIDATION
+.form-error-message {
+  font-size: 13px;
+  color: var(--ion-color-danger);
+}
+
+.form-error-input {
+  border-bottom: 1px solid var(--ion-color-danger) !important;
+  margin-bottom: 5px;
+}
+
+body.barcode-scanner-active {
+  visibility: hidden;
+  --background: transparent;
+  --ion-background-color: transparent;
+}

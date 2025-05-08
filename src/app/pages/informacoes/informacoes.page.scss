@@ -1,0 +1,76 @@
+.fixed-footer {
+  position: fixed; /* Fixes the footer at the bottom */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white; /* Ensures visibility */
+  z-index: 10; 
+}
+
+ion-grid.social {
+  text-align: center;
+  
+}
+
+ion-grid.social ion-row {
+  display: flex;
+  justify-content: center;
+}
+
+ion-grid.social ion-col {
+  text-align: center;
+}
+
+ion-grid.social ion-icon {
+  font-size: 24px;
+  color: var(--ion-color-primary);
+}
+
+ion-grid.social ion-label {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.copyright {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.logo {
+  ion-img {
+    max-height: 95px;
+    height: 107px !important;
+  }
+  &::after {
+    content: "";
+    height: 41px;
+    width: 2px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background-color: #aeb0b0;
+  }
+}
+
+.centralizado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  background: transparent;
+  padding: 12px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.logo-teste {
+  width: 300px;
+}
+
+

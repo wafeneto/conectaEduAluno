@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <app-header title="Agenda" [hasNotification]="servico.temMensagemNova"></app-header>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <ion-toolbar>
+    <ion-segment value="calendario">
+
+      <ion-segment-button value="calendario" contentId="calendario">
+        <ion-label>Calendário Escolar</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="horario" contentId="horario"> 
+        <ion-label>Horário de Aulas</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-segment-view>
+    <ion-segment-content id="calendario">
+      @if(eventSource){
+        <app-event-calendar [eventSource]="eventSource"></app-event-calendar>
+      }
+    </ion-segment-content>
+    <ion-segment-content id="horario">
+      @if(aulas){
+        <app-horario [aulas]="aulas"></app-horario>
+      }
+    </ion-segment-content>
+  </ion-segment-view>
+  
+</ion-content>

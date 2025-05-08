@@ -1,0 +1,51 @@
+//Most ionic2 calendar style needs to be in global.css
+.indicator-container{
+    padding-right: 0.4rem;
+    padding-left: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  
+  }
+  
+  .indicator-present{
+    background-color: greenyellow;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .indicator-absent{
+    background-color: red;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  .metadata-end-wrapper {
+    position: absolute;
+  
+    top: 10px;
+    inset-inline-end: 10px;
+  
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  ion-label strong {
+    display: block;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  ion-label ion-note {
+    font-size: 0.9rem;
+  }
+
+  ion-col{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

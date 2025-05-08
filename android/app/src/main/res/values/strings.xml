@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Conecta EDU Pais</string>
+    <string name="title_activity_main">Conecta EDU Pais</string>
+    <string name="package_name">vvision.conectaedu.aluno</string>
+    <string name="custom_url_scheme">vvision.conectaedu.aluno</string>
+</resources>

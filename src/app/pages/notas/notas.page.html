@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <app-header title="Notas"/>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div style="padding: 2%;">
+    <ion-accordion-group>
+      @if (listaBoletins?.length > 0) {
+        @for (boletim of listaBoletins; track boletim.codigo) {
+          <ion-accordion style="margin-bottom: 5px;">
+            <ion-item slot="header" color="white">
+              <ion-label>{{boletim.caderneta.disciplina.disciplina.nome}}</ion-label> 
+              <ion-badge slot="end" [color]="getColorStatus(boletim.status)">{{boletim.statusFormatado}}</ion-badge> 
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <swiper-container 
+                [pagination]="true"
+              >
+                <swiper-slide>
+                  <ion-grid  style="margin-bottom: 5px;" fixed>
+                  <ion-row>
+                    <ion-col size="9"></ion-col>
+                    <ion-col size="3">Notas</ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="9">1º Unidade</ion-col>
+                    <ion-col size="3">{{boletim.notaUm === 0 ? "--" : boletim.notaUm}}/10 </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="9">2º Unidade</ion-col>
+                    <ion-col size="3">{{boletim.notaDois === 0 ? "--" : boletim.notaDois}}/10 </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="9">3º Unidade</ion-col>
+                    <ion-col size="3">{{boletim.notaTres === 0 ? "--" : boletim.notaTres}}/10 </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="9">4º Unidade</ion-col>
+                    <ion-col size="3">{{boletim.notaQuatro === 0 ? "--" : boletim.notaQuatro}}/10 </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size="9" style="font-weight: bold;">Média</ion-col>
+                    <ion-col size="3" style="font-weight: bold;">{{boletim.media === 0 ? "--" : boletim.media}}/10 </ion-col>
+                  </ion-row>
+                  </ion-grid>
+                </swiper-slide>
+  
+                @if (boletim.status !== 1 || boletim.status !== null) {
+                  <swiper-slide>
+                    <ion-grid fixed>  
+                      <ion-row>
+                        <ion-col size="9">Recuperação</ion-col>
+                        <ion-col size="3">Notas</ion-col>
+                      </ion-row>
+  
+                      <ion-row>
+                        <ion-col size="9">1º Unidade</ion-col>
+                        <ion-col size="3">{{boletim.recuperacaoUm === 0 ? "--" : boletim.recuperacaoUm}}/10 </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="9">2º Unidade</ion-col>
+                        <ion-col size="3">{{boletim.recuperacaoDois === 0 ? "--" : boletim.recuperacaoDois}}/10 </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="9">3º Unidade</ion-col>
+                        <ion-col size="3">{{boletim.recuperacaoTres === 0 ? "--" : boletim.recuperacaoTres}}/10 </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col size="9">4º Unidade</ion-col>
+                        <ion-col size="3">{{boletim.recuperacaoQuatro === 0 ? "--" : boletim.recuperacaoQuatro}}/10 </ion-col>
+                      </ion-row>
+  
+                    </ion-grid>
+  
+                  </swiper-slide>
+                  
+                }
+                
+              </swiper-container>
+              
+            </div>
+          </ion-accordion>
+        }
+        
+      }@else {
+        <ng-container #elseblock>
+          <ion-label>Voce nao tem notas cadastradas.</ion-label>
+        </ng-container>
+  
+      }
+     
+    </ion-accordion-group>
+
+  </div>
+
+</ion-content>
