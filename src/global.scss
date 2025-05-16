@@ -44,6 +44,7 @@ ion-content {
   font-family: "Open Sans", sans-serif;
   --background: #f0f0f0;
 }
+
 .monthview-selected{
   background-color: transparent !important;
   .day-content{
@@ -97,4 +98,10 @@ ion-content {
     --dis-8: #d53e4f;
     --dis-9: #f46d43;
   }
-  
+  /* global.scss */
+ion-input input {
+  caret-color: auto !important;
+}
+ion-select::part(icon) {
+  color: var(--ion-color-primary) !important;
+}

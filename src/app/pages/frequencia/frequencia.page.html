@@ -2,7 +2,7 @@
   <app-header title="Frequência" [hasNotification]="servico.temMensagemNova"></app-header>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
   <ion-row class="calendar-buttons">
     <ion-col size="2" >
       <ion-button fill="clear" (click)="previousMonth()">
@@ -22,6 +22,7 @@
     class="calendar"
     [eventSource]="eventSource"
     [calendarMode]="calendar.mode" 
+    [sliderOptions]="sliderOptions"
     (onTitleChanged)="onTitleChange($event)"
     (onCurrentDateChanged)="onCurrentDateChanged($event)"
     formatDayHeader=" EEEEE "

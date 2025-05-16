@@ -32,13 +32,19 @@ export class FrequenciaPage {
   calendario: CalendarioEscolar;
   eventSource: event[] = [];
   @ViewChild(CalendarComponent) myCal!: CalendarComponent;
-  frequencia = { presencas : 0,faltas:0}
+  frequencia = { presencas : 0,faltas : 0 }
   month='';
-
   sliderOptions = {
     loop: false,
-    observer: true,         // auto‑refresh on DOM changes
-    observeParents: true    // also watch parent element mutations
+    preventInteractionOnTransition: true,
+    observer: true,
+    observeParents: true,
+    on: {
+      slideChangeTransitionEnd: () => {
+        this.myCal.loadEvents();
+        this.cdr.detectChanges();
+      }
+    }
   };
   currentDate: Date = new Date();
   calendar = {
@@ -46,6 +52,7 @@ export class FrequenciaPage {
     formatDayHeader: "E"
   }
   servico = Servico;
+  
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private storageService: StorageService,
@@ -53,7 +60,6 @@ export class FrequenciaPage {
     {}
 
   async ionViewWillEnter() {
-
     await this.consultaFrequencia();
   }
 
@@ -61,9 +67,9 @@ export class FrequenciaPage {
     try{
      
       await this.loadingService.present();
-      const params = `varcodigo=${this.aluno.matriculas[0].codigo}`;
+      // const params = `varcodigo=${this.aluno.matriculas[0].codigo}`;
 
-      const registros = Mentor.executaVisao(3311,params);
+      const registros = Servico.frequencia;
 
       const events: event[] = registros
         .map(registro => ({
@@ -88,7 +94,6 @@ export class FrequenciaPage {
     
   }
 
-
   previousMonth(){
     this.myCal.slidePrev();
   }
@@ -102,9 +107,9 @@ export class FrequenciaPage {
   }
   
   onTitleChange(event:string){
-    this.myCal.loadEvents();
+    // this.myCal.loadEvents();
     this.month = event;
-    this.cdr.detectChanges();
+    // this.cdr.detectChanges();
    
   }
 
@@ -132,11 +137,6 @@ export class FrequenciaPage {
     
   get porcentagemFrequencia(){
     return this.presencas*100/this.eventSource.length;
-  }
-
-  onSlideChanged() {
-    // Força o Swiper (por trás do ion-slides) a recalcular tamanhos e reaplicar estilos
-    this.myCal.update();
   }
 
 }

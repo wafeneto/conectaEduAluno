@@ -18,8 +18,9 @@ import { ToastService } from 'src/app/shared/services/toast/toast.service';
 export class NotasPage {
 
   aluno: Aluno = Servico.aluno;
-  listaBoletins: AlunoNotasCaderneta[];
   servico = Servico;
+  listaBoletins: AlunoNotasCaderneta[];
+
   constructor(
     private loadingService: LoadingService,
     private navCtrl: NavController,
@@ -36,9 +37,7 @@ export class NotasPage {
   async consultaNotas(){
     try{
       await this.loadingService.present();
-      const params = `varcodigo=${this.aluno.matriculas[0].codigo}`;
-      const boletins = Mentor.executaVisao(3313,params);
-      this.listaBoletins = boletins;
+      this.listaBoletins = Servico.boletins;
 
     }catch(error){
       this.toastService.showToast({ message: error as string });

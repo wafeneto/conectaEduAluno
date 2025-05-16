@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'vvision.conectaedu.aluno',
-  appName: 'Conecta EDU Pais',
+  appName: 'Conecta EDU Aluno',
   webDir: 'www',
   server: {
     androidScheme: 'http',
@@ -13,6 +13,9 @@ const config: CapacitorConfig = {
       launchShowDuration: 3000,
       splashFullScreen: true
     },
+    StatusBar: {
+      overlaysWebView: false
+    }
   }
 };
 

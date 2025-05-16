@@ -1,8 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { CalendarComponent, CalendarMode } from 'ionic2-calendar';
-import { LoadingService } from 'src/app/shared/services/loading/loading.service';
-import { ToastService } from 'src/app/shared/services/toast/toast.service';
-
 
 type event = {
   title : string,
@@ -25,6 +22,18 @@ export class EventCalendarComponent implements OnInit {
   @Input() showEventPerMonth: boolean = true;
   @ViewChild(CalendarComponent) myCal!: CalendarComponent;
   eventPerMonth: event[] = [];
+  sliderOptions = {
+    loop: false,
+    preventInteractionOnTransition: true,
+    observer: true,
+    observeParents: true,
+    on: {
+      slideChangeTransitionEnd: () => {
+        this.myCal.loadEvents();
+        this.cdr.detectChanges();
+      }
+    }
+  };
 
   month='';
   currentDate: Date = new Date();

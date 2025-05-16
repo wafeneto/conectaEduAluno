@@ -148,7 +148,7 @@ export class LoginPage {
 
       const params = `varcpf=${this.usuarioForm.login}`;
       Mentor.UrlRequest = 'http://190.109.113.120:8080/escolar/';
-      const usuarioRetornado = Mentor.executaVisao(3318, params);
+      const usuarioRetornado:Aluno = Mentor.executaVisao(3318, params);
 
       if (!usuarioRetornado) {
         this.toastService.showToast({ message: 'Usuário incorreto' });
@@ -171,6 +171,10 @@ export class LoginPage {
       }
       this.validaLogin();
 
+      Servico.frequencia = usuarioRetornado.matriculas[0].registroAulaFrequencias;
+      Servico.boletins = usuarioRetornado.matriculas[0].notas;
+      Servico.calendario = usuarioRetornado.matriculas[0].turma.calendario;
+      Servico.turma = usuarioRetornado.matriculas[0].turma;
      
     } catch (error) {
       this.toastService.showToast({ message: error as string });

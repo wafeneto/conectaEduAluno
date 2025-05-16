@@ -159,12 +159,23 @@ ion-item-option {
 .modal-content {
   background-color: #f9f9f9;
 }
+.read {
+  opacity: 0.4;
+}
 
 .modal-card {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
+.empty-state {
+  height: 100hv;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
+  align-items: center;     /* centraliza horizontalmente */
+  text-align: center;
+  color: var(--ion-color-medium);
+}
 .modal-text {
   font-size: 15px;
   color: #333;

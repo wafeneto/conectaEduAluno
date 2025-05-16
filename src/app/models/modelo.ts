@@ -163,86 +163,101 @@ export class Aluno extends ionicClasseBase {
       }
   
 }
+
 export class AlunosMatriculas extends ionicClasseBase {
-public static mentorNomeClasse = 'br.com.educacao.beans.AlunosMatriculas';
-
-	static criaColecao(lista: any){
-		if(lista!=null){
-			var retorno = new Array();
-			for(let x = 0;x<lista.length;x++)
-				retorno.push(new AlunosMatriculas(lista[x]));
-			return retorno;
-		}
-	}
-
-		public codigo : number = 0 ;
-		public codigo_ : String ;
-		get codigoSimNao(){ if (this.codigo == 1) return true; else return false;}
-		set codigoSimNao(flag){ if (flag) this.codigo = 1; else this.codigo = 0;}
-		get codigoFormatado(): String {
-			return (this.codigo_)
-		}
-		set codigoFormatado(valor: String) {
-			this.codigo_ =  (valor);
-			if(replaceAll(valor," ","") != "")
-				this.codigo =  Mentor.stringToMoeda(valor);
-		}
-
-		public situacao : number = 0 ;
-		public situacao_ : String ;
-		get situacaoSimNao(){ if (this.situacao == 1) return true; else return false;}
-		set situacaoSimNao(flag){ if (flag) this.situacao = 1; else this.situacao = 0;}
-		public situacaoFormatadoLista : formatadoLista[] = new Array();
-		get situacaoFormatado(){  return Mentor.formatadoLista(this.situacaoFormatadoLista,this.situacao);}
-
-		public turma : Turma ;
-
-public listaAtributosKodefy: Array<string> ='codigo#situacao#'.split('#');
-		constructor(objeto:any){
-		super();
-		if(objeto != null && objeto != 'null'){
-if(typeof(objeto.ionicFlagNovo) == 'undefined') this.ionicFlagNovo = false; else this.ionicFlagNovo = objeto.ionicFlagNovo;
-this.idApp = objeto.idApp;
-this.nomeApp = objeto.nomeApp;
-			 this.codigo = objeto.codigo;
-			 this.codigo_ = Mentor.intToString(this.codigo);
-			 this.situacao = objeto.situacao;
-			 this.situacao_ = Mentor.intToString(this.situacao);
-
-			if(objeto.turma != null)
-				this.turma = new Turma(objeto.turma);
-
-		}
-		else{
-		if((objeto) == 'null'){
-this.ionicFlagNovo = true;
-			 this.codigo = 0;
-			 this.codigo_ = '0';
-			 this.situacao = 0;
-			 this.situacao_ = '0';
-
-			}else{
-this.ionicFlagNovo = true;
-			 this.codigo = 0;
-			 this.codigo_ = '0';
-			 this.situacao = 0;
-			 this.situacao_ = '0';
-				this.turma = new Turma('null');
-
-		}
-			}
-
-			this.situacaoFormatadoLista.push(new formatadoLista(1,"Ativo"));
-			this.situacaoFormatadoLista.push(new formatadoLista(2,"Inativo"));
-			this.situacaoFormatadoLista.push(new formatadoLista(3,"Cancelado"));
-			this.situacaoFormatadoLista.push(new formatadoLista(4,"Transferido"));
-			this.situacaoFormatadoLista.push(new formatadoLista(5,"Em Espera"));
-			this.situacaoFormatadoLista.push(new formatadoLista(6,"Falecido"));
-			this.situacaoFormatadoLista.push(new formatadoLista(7,"Evadido"));
-
-		}
-
-}
+  public static mentorNomeClasse = 'br.com.educacao.beans.AlunosMatriculas';
+  
+    static criaColecao(lista: any){
+      if(lista!=null){
+        var retorno = new Array();
+        for(let x = 0;x<lista.length;x++)
+          retorno.push(new AlunosMatriculas(lista[x]));
+        return retorno;
+      }
+    }
+  
+      public codigo : number = 0 ;
+      public codigo_ : String ;
+      get codigoSimNao(){ if (this.codigo == 1) return true; else return false;}
+      set codigoSimNao(flag){ if (flag) this.codigo = 1; else this.codigo = 0;}
+      get codigoFormatado(): String {
+        return (this.codigo_)
+      }
+      set codigoFormatado(valor: String) {
+        this.codigo_ =  (valor);
+        if(replaceAll(valor," ","") != "")
+          this.codigo =  Mentor.stringToMoeda(valor);
+      }
+  
+      public situacao : number = 0 ;
+      public situacao_ : String ;
+      get situacaoSimNao(){ if (this.situacao == 1) return true; else return false;}
+      set situacaoSimNao(flag){ if (flag) this.situacao = 1; else this.situacao = 0;}
+      public situacaoFormatadoLista : formatadoLista[] = new Array();
+      get situacaoFormatado(){  return Mentor.formatadoLista(this.situacaoFormatadoLista,this.situacao);}
+  
+      public turma : Turma ;
+      public registroAulaFrequencias : RegistroAulaFrequencia[] ;
+      public notas : AlunoNotasCaderneta[] ;
+  
+  public listaAtributosKodefy: Array<string> ='codigo#situacao#'.split('#');
+      constructor(objeto:any){
+      super();
+      if(objeto != null && objeto != 'null'){
+  if(typeof(objeto.ionicFlagNovo) == 'undefined') this.ionicFlagNovo = false; else this.ionicFlagNovo = objeto.ionicFlagNovo;
+  this.idApp = objeto.idApp;
+  this.nomeApp = objeto.nomeApp;
+         this.codigo = objeto.codigo;
+         this.codigo_ = Mentor.intToString(this.codigo);
+         this.situacao = objeto.situacao;
+         this.situacao_ = Mentor.intToString(this.situacao);
+  
+        if(objeto.turma != null)
+          this.turma = new Turma(objeto.turma);
+          this.registroAulaFrequencias = new Array();
+  
+        if(objeto.registroAulaFrequencias != null){
+          for(let x:number = 0;x<objeto.registroAulaFrequencias.length;x++)
+          this.registroAulaFrequencias.push(new RegistroAulaFrequencia(objeto.registroAulaFrequencias[x]))
+        }
+          this.notas = new Array();
+  
+        if(objeto.notas != null){
+          for(let x:number = 0;x<objeto.notas.length;x++)
+          this.notas.push(new AlunoNotasCaderneta(objeto.notas[x]))
+        }
+  
+      }
+      else{
+      if((objeto) == 'null'){
+  this.ionicFlagNovo = true;
+         this.codigo = 0;
+         this.codigo_ = '0';
+         this.situacao = 0;
+         this.situacao_ = '0';
+  
+        }else{
+  this.ionicFlagNovo = true;
+         this.codigo = 0;
+         this.codigo_ = '0';
+         this.situacao = 0;
+         this.situacao_ = '0';
+          this.turma = new Turma('null');
+  
+      }
+        }
+  
+        this.situacaoFormatadoLista.push(new formatadoLista(1,"Ativo"));
+        this.situacaoFormatadoLista.push(new formatadoLista(2,"Inativo"));
+        this.situacaoFormatadoLista.push(new formatadoLista(3,"Cancelado"));
+        this.situacaoFormatadoLista.push(new formatadoLista(4,"Transferido"));
+        this.situacaoFormatadoLista.push(new formatadoLista(5,"Em Espera"));
+        this.situacaoFormatadoLista.push(new formatadoLista(6,"Falecido"));
+        this.situacaoFormatadoLista.push(new formatadoLista(7,"Evadido"));
+  
+      }
+  
+  }
 export class Escola extends ionicClasseBase {
 public static mentorNomeClasse = 'br.com.educacao.beans.Escola';
 

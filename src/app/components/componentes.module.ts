@@ -9,6 +9,7 @@ import {  NgCalendarModule } from 'ionic2-calendar';
 import { HorarioComponent } from './horario/horario.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 
 
 
@@ -17,14 +18,16 @@ import {RoundProgressModule} from 'angular-svg-round-progressbar';
     HeaderComponent,
     EventCalendarComponent,
     HorarioComponent,
-    AlunoComponent
+    AlunoComponent,
+    EmptyStateComponent
    
   ],
   exports: [
     HeaderComponent,
     EventCalendarComponent,
     HorarioComponent,
-    AlunoComponent
+    AlunoComponent,
+    EmptyStateComponent
    
   ],
   imports: [

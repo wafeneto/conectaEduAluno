@@ -34,8 +34,8 @@ type horario = {
   standalone:false
 })
 export class AgendaPage {
-  aluno:Aluno = Servico.aluno;
-  listaHorariosAula:Turma;
+  aluno: Aluno = Servico.aluno;
+  turma: Turma;
   aulas: horario[] = [];
   selectedSegment = 'calendario';
   calendario: CalendarioEscolar;
@@ -62,10 +62,7 @@ export class AgendaPage {
 
   async consultaCalendario(){
     try{
-      const date = new Date();
-      const currentYear = date.getFullYear();
-
-      this.calendario = Mentor.executaVisao(2549,"varano=" + currentYear);
+      this.calendario = Servico.calendario;
 
       const events: event[] = this.calendario.datas
         .filter(data => data.tipo.flagDiaEspecial === 1)
@@ -87,25 +84,23 @@ export class AgendaPage {
 
   async consultaHorariosAula(){
     try{
-      const params = `varcodigo=${this.aluno.matriculas[0].codigo}`;
-      this.listaHorariosAula = Mentor.executaVisao(3276,params);
-
-      if(this.listaHorariosAula === null){
+      this.turma = Servico.turma;
+      if(this.turma === null){
         return
       }
-      for(let x =0; x<this.listaHorariosAula.horarios.length;x++){
+      for(let x =0; x<this.turma.horarios.length;x++){
         this.aulas = [
           ...this.aulas,
           {
-            idDisciplina : this.listaHorariosAula.horarios[x].disciplina.disciplina.codigo,
-            disciplina : this.listaHorariosAula.horarios[x].disciplina.disciplina.nome.valueOf(),
-            sigla : this.listaHorariosAula.horarios[x].disciplina.disciplina.sigla.valueOf(),
-            ordem : this.listaHorariosAula.horarios[x].horaAula.ordem.valueOf(),
-            dia : this.listaHorariosAula.horarios[x].diaSemana.valueOf(),
-            horaInicio : this.listaHorariosAula.horarios[x].horaAula.horaInicio.valueOf(),
-           horaFim : this.listaHorariosAula.horarios[x].horaAula.horaFim.valueOf(),
-           turma : this.listaHorariosAula.nome.valueOf(),
-           professor : this.listaHorariosAula.horarios[x].disciplina.professor.nome.valueOf(),
+            idDisciplina : this.turma.horarios[x].disciplina.disciplina.codigo,
+            disciplina : this.turma.horarios[x].disciplina.disciplina.nome.valueOf(),
+            sigla : this.turma.horarios[x].disciplina.disciplina.sigla.valueOf(),
+            ordem : this.turma.horarios[x].horaAula.ordem.valueOf(),
+            dia : this.turma.horarios[x].diaSemana.valueOf(),
+            horaInicio : this.turma.horarios[x].horaAula.horaInicio.valueOf(),
+           horaFim : this.turma.horarios[x].horaAula.horaFim.valueOf(),
+           turma : this.turma.nome.valueOf(),
+           professor : this.turma.horarios[x].disciplina.professor.nome.valueOf(),
           }
         ]
           

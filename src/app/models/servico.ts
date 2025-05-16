@@ -2,14 +2,17 @@
 
 //npm i text-mask-addons --save
 
-import { Aluno, AlunosMatriculas, ResponsavelAluno } from "./modelo";
+import { Aluno, AlunoNotasCaderneta, AlunosMatriculas, CalendarioEscolar, HorarioAula, HorarioEscolar, RegistroAulaFrequencia, ResponsavelAluno, Turma } from "./modelo";
 
 //https://github.com/text-mask/text-mask/tree/master/addons/#readme
 
 export class Servico {
   static aluno: Aluno;
   static usuario: Aluno;
-  
+  static frequencia: RegistroAulaFrequencia[];
+  static boletins: AlunoNotasCaderneta[];
+  static calendario: CalendarioEscolar;
+  static turma: Turma;
   // static enviaDados: boolean = false;
   // static usuarioLogado: any = null;
   // static imagem: String = null;
