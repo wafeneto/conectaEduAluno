@@ -1,0 +1,42 @@
+<ion-content [fullscreen]="true">
+  
+  <ion-grid style="border: 1px solid black; border-radius: 5px;">
+    <ion-row>
+      <ion-col size="2" class="ion-text-center"> Seg</ion-col>
+      <ion-col size="2" class="ion-text-center"> Ter</ion-col>
+      <ion-col size="2" class="ion-text-center"> Qua</ion-col>
+      <ion-col size="2" class="ion-text-center"> Qui</ion-col>
+      <ion-col size="2" class="ion-text-center"> Sex</ion-col>
+      <ion-col size="2" class="ion-text-center"> Sab</ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let ordem of ordemAulas" >
+      
+      <ion-col *ngFor="let dia of diasSemana" size="2" class="ion-text-center" >
+        
+        <div  *ngFor="let aula of getAulasPorDiaEOrdem(dia, ordem); let i = index">
+            
+            <div *ngIf="i === 0" (click)="openPopover($event, aula, aula.idDisciplina)" class="aula" [ngStyle]="{'backgroundColor':getIndicieDeCorDependendoDoId(aula.idDisciplina)}">
+              <p style=" font-weight: bolder; margin:0; margin-bottom: 4px;">{{aula.sigla}}</p>
+              <p style=" margin:0; margin-bottom: 4px;">{{aula.horaInicio}} </p>
+              <p style=" margin:0;">{{aula.horaFim}} </p>
+            </div>
+              
+        </div>
+        
+      </ion-col>
+    </ion-row>
+   
+  </ion-grid>
+  
+  <ion-popover #popover [isOpen]="popoverOpen" [event]="popoverEvent" (didDismiss)="popoverOpen = false">
+    <ng-template >
+      <ion-content class="ion-padding" [ngStyle]="{'--background': corDisciplina}">
+        <h3>{{ selectedItem.disciplina | titlecase}}</h3>
+        <p>Professor: {{ selectedItem.professor }}</p>
+        <p>Turma: {{ selectedItem.turma }}</p>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
+</ion-content>

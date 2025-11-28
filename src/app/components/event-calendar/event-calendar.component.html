@@ -1,0 +1,104 @@
+
+  <ion-row class="calendar-buttons">
+    <ion-col size="2" >
+      <ion-button fill="clear" (click)="previousMonth()">
+        <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="8">
+      <h2 class="ion-text-center">{{ month | titlecase }}</h2>
+    </ion-col>
+    <ion-col size="2" >
+      <ion-button fill="clear" (click)="nextMonth()">
+        <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+ 
+  
+  
+    <calendar
+    class="calendar"
+    [eventSource]="eventSource"
+    [calendarMode]="calendar.mode" 
+    (onTitleChanged)="onTitleChange($event)"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)"
+    formatDayHeader=" EEEEE "
+    [sliderOptions]="sliderOptions"
+    allDayLabel="Dia Todo"
+    noEventsLabel = "Sem Eventos"
+    [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate"
+    [monthviewEventDetailTemplate]="monthviewEventDetailTemplate"
+    />
+
+    <ng-template  #monthviewDisplayEventTemplate let-view="view" let-row="row" let-col="col">
+      
+      <div [class.day-color]="!hasEventsCounter" class="day-content" style="padding: 5px 0;">
+          <div>
+            {{view.dates[row*7+col].label}}
+
+          </div>
+        
+        <div *ngIf="hasEventsCounter" class="indicator-container">
+          <div [class]="{
+            'indicator-present' : e.chamada === true,
+            'indicator-absent' : e.chamada === false
+          }" *ngFor="let e of view.dates[row*7+col].events"></div>
+        </div> 
+      
+       
+      </div>
+    </ng-template>
+  
+
+    
+
+    <ng-template #monthviewEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+      <div *ngIf="selectedDate?.events.length>0">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Eventos do Dia</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item [button]="true" detail="false" *ngFor="let event of selectedDate?.events">
+                  <ion-label>
+                    <strong>{{event.title}}</strong>
+                    <ion-note color="medium" class="ion-text-wrap">
+                      {{event.description}}
+                    </ion-note>
+                  </ion-label>
+                  <div class="metadata-end-wrapper" slot="end">
+                    <ion-note color="medium">{{event.startTime | date:"dd/MM"}}</ion-note>
+                    <ion-icon color="medium" name="chevron-forward"></ion-icon>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+      </div>
+        
+      <ion-card *ngIf="showEventPerMonth">
+        <ion-card-header>
+          <ion-card-title>Eventos do Mês</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item [button]="true" detail="false" *ngFor="let event of eventPerMonth">
+              <ion-label>
+                <strong>{{event.title}}</strong>
+                <ion-note color="medium" class="ion-text-wrap">
+                  {{event.description}}
+                </ion-note>
+              </ion-label>
+              <div class="metadata-end-wrapper" slot="end">
+                <ion-note color="medium">{{event.startTime | date:"dd/MM"}}</ion-note>
+                <ion-icon color="medium" name="chevron-forward"></ion-icon>
+              </div>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+
+

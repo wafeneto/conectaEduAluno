@@ -1,0 +1,112 @@
+<ion-header [translucent]="true">
+  <app-header title="Frequência" [hasNotification]="servico.temMensagemNova"></app-header>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-row class="calendar-buttons">
+    <ion-col size="2" >
+      <ion-button fill="clear" (click)="previousMonth()">
+        <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="8">
+      <h2 class="ion-text-center">{{ month | titlecase }}</h2>
+    </ion-col>
+    <ion-col size="2" >
+      <ion-button fill="clear" (click)="nextMonth()">
+        <ion-icon name="chevron-forward-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+    <calendar
+    class="calendar"
+    [eventSource]="eventSource"
+    [calendarMode]="calendar.mode" 
+    [sliderOptions]="sliderOptions"
+    (onTitleChanged)="onTitleChange($event)"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)"
+    formatDayHeader=" EEEEE "
+    allDayLabel="Dia Todo"
+    noEventsLabel = "Sem Eventos"
+    [monthviewDisplayEventTemplate]="monthviewDisplayEventTemplate"
+    [monthviewEventDetailTemplate]="monthviewEventDetailTemplate"
+    />
+    <ng-template  #monthviewDisplayEventTemplate let-view="view" let-row="row" let-col="col">
+      
+      <div class="day-content" style="padding: 5px 0;">
+          <div>
+            {{view.dates[row*7+col].label}}
+
+          </div>
+
+          <div class="indicator-container">
+            <div [class]="{
+              'indicator-present' : e.chamada === true,
+              'indicator-absent' : e.chamada === false
+            }" *ngFor="let e of view.dates[row*7+col].events"></div>
+            </div> 
+
+          </div>
+      
+    </ng-template>
+    <ng-template #monthviewEventDetailTemplate let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Visão Geral</ion-card-title>
+        </ion-card-header>
+        <ion-card-content class="container">
+        
+            <div class="progress-container">
+              <round-progress 
+                [current]="presencas"
+                [max]="this.eventSource.length"
+                [color]="'var(--ion-color-secondary)'"
+                [background]="'#e0e0e0'"
+                [stroke]="10"
+                [radius]="50"
+                [animation]="'easeInOutQuart'"
+                [animationDelay]="0"
+                [duration]="800">
+              </round-progress>
+              <div class="progress-text">{{ porcentagemFrequencia| number: '1.2-2' }}%</div>
+            </div>
+            
+            <div class="values-container">
+              <ion-card>
+                <ion-card-content>
+                  <p>{{presencas}} Presenças</p>
+                  <p>{{faltas}} Faltas</p>
+                </ion-card-content>
+              </ion-card>
+            </div>
+        </ion-card-content>
+      </ion-card>
+      
+      <div *ngIf="selectedDate?.events.length > 0">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Aulas do dia</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item [button]="true" detail="false" *ngFor="let event of selectedDate?.events">
+                  <ion-label>
+                    <strong>{{event.title}}</strong>
+                    <ion-note color="medium" class="ion-text-wrap">
+                      {{event.description}}
+                    </ion-note>
+                  </ion-label>
+                  <div class="metadata-end-wrapper" slot="end">
+                    <ion-note color="medium">{{event.startTime | date:"dd/MM"}}</ion-note>
+                    <ion-icon color="medium" name="chevron-forward"></ion-icon>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+      </div>
+
+      
+    </ng-template>
+
+</ion-content>

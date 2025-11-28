@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar class="ion-no-border" style="position: relative;">
+   
+    <ion-buttons slot="start">
+      @if (hasBackButton) {
+        <ion-back-button
+          type="reset"
+          color="light"
+          defaultHref="/tabs"
+          text=""
+          
+        ></ion-back-button>
+
+      }@else if(hasLogoIcon){
+        <ion-button>
+          <ion-img src="/assets/LogoConectaEdu.png" style="width: 40px"></ion-img>
+        </ion-button>
+      }
+    </ion-buttons>
+
+   
+      
+      <ion-title slot="">{{ title }}</ion-title> 
+   
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/notificacoes" *ngIf="hasNotificationIcon">
+        <ion-icon color="white" slot="icon-only" name="notifications"></ion-icon>
+        <div class="badge-notification" *ngIf="hasNotification"></div>
+      </ion-button>
+      <ion-button routerLink="/informacoes" *ngIf="hasInfoIcon">
+        <ion-icon color="white" slot="icon-only" name="person"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

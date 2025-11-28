@@ -1,0 +1,112 @@
+
+<ion-content  class="background" fullscreen="true">
+  <div class="container">
+    <div class="container-center">
+      <div class="logo-container">
+        <ion-img class="logo-teste" src="/assets/LogoConectaEduEstendida.jpeg"></ion-img>
+      </div>
+
+    </div>
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked"
+        ><strong>CPF</strong></ion-label
+      >
+      <ion-input
+      placeholder="Usuário"
+      type="tel"
+      maxlength="14"
+      [maskito]="cpfMask"
+      [maskitoElement]="maskPredicate"
+      [(ngModel)]="usuarioForm.login"
+      ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked"
+        ><strong>SENHA</strong></ion-label
+      >
+      <ion-input
+      placeholder="Senha"
+      type="password"
+      [(ngModel)]="usuarioForm.senha"
+      ></ion-input>
+        
+      </ion-item>
+    </ion-list>
+   
+    <div id="buttons">
+      <ion-button
+      color="primary"
+      fill="outline"
+      expand="block"
+      (click)="alteraMunicipio()"
+      >Alterar o Município</ion-button
+    >
+      <ion-button expand="block" color="primary" (click)="realizaLogin()"
+        >Login</ion-button
+      >
+  
+
+    </div>
+  </div>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Criar Senha</ion-title>
+          <ion-buttons slot="end">
+            <!-- <ion-button (click)="isModalOpen = false">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button> -->
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+  
+      <ion-content class="ion-padding">
+
+      
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked"><strong>CPF</strong></ion-label>
+            <ion-input
+              placeholder="Digite seu CPF"
+              type="tel"
+              maxlength="14"
+              [maskito]="cpfMask"
+              [maskitoElement]="maskPredicate"
+              [(ngModel)]="senhaNova.cpf"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked"><strong>Senha</strong></ion-label>
+            <ion-input
+              placeholder="Digite a nova senha"
+              type="password"
+              [(ngModel)]="senhaNova.senha"
+            ></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label position="stacked"><strong>Confirmar Senha</strong></ion-label>
+            <ion-input
+              placeholder="Confirme a nova senha"
+              type="password"
+              [(ngModel)]="senhaNova.confirmaSenha"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+  
+        <div class="ion-padding-top">
+          <ion-button expand="block" color="secondary" style="color: white;" (click)="criaSenha()">
+            Enviar
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  
+</ion-content>

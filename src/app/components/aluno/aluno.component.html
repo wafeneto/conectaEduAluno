@@ -1,0 +1,21 @@
+
+
+<ion-list *ngIf="aluno">
+  <ion-item (click)="trocarAluno || !aluno.matriculas[0] ? null : onSelectAluno()">
+    
+    <ion-thumbnail slot="start">
+      
+      <img width="5px" alt="Silhouette of mountains" [src]="aluno.flagFoto ? fotoAluno : 'assets/profileIcon.png'" />
+
+      
+    </ion-thumbnail>
+    <ion-label>
+      <h2>{{aluno.nome}}</h2>
+      <p style="font-size: 0.8em; color: gray;">Escola: {{aluno.matriculas[0] ? aluno.matriculas[0].turma.escola.nome : " "}}</p>
+      <p style="font-size: 0.8em; color: gray;">Turma: {{aluno.matriculas[0] ? aluno.matriculas[0].turma.nome : ""}}</p>
+    </ion-label>
+    <ion-icon *ngIf="trocarAluno" name="repeat-outline" (click)="aluno.matriculas[0] ? onChangeAluno() : null"></ion-icon>
+  </ion-item>
+</ion-list>
+    
+    

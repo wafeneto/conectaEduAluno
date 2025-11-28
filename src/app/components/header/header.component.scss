@@ -1,0 +1,29 @@
+ion-title.ios {
+    text-align: center !important;
+  }
+  
+  ion-title.md {
+    text-align: center !important;
+  }
+
+ion-toolbar{
+    --background: var(--ion-color-primary);
+}
+
+.badge-notification {
+  width: 10px;
+  height: 10px;
+  background: red;
+  position: absolute;
+  top: 1px;
+  border-radius: 100%;
+  right: 6px;
+}
+
+ion-title{
+  color: white;
+}
+
+
+  
+  
