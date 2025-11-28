@@ -75,7 +75,7 @@ export class LoginPage {
   }
 
   readonly maskPredicate: MaskitoElementPredicate = async (el) =>
-    (el as HTMLIonInputElement).getInputElement();
+    (el as unknown as HTMLIonInputElement).getInputElement();
 
   constructor(
     private storage : Storage,
@@ -99,7 +99,7 @@ export class LoginPage {
           StorageKeysEnums.licenca
         );
 
-      Mentor.UrlRequest = 'https://app.conectasuas.com.br/assistenciaSocial/';
+      Mentor.UrlRequest = 'https://treinamento.conectasuas.com.br/assistenciaSocial/';
 
       const requestParam = `varcodigoLicenca=${licenca.codigo}`;
 

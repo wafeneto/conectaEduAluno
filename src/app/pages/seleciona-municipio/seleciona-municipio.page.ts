@@ -47,7 +47,7 @@ export class SelecionaMunicipioPage {
 
   async listarEstado() {
     try {
-      Mentor.UrlRequest = 'https://app.conectasuas.com.br/assistenciaSocial/';
+      Mentor.UrlRequest = 'https://treinamento.conectasuas.com.br/assistenciaSocial/';
 
       await this.loadingService.present();
 
